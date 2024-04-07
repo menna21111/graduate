@@ -33,7 +33,7 @@ class CategoriesRepoImpl implements CategoriesRepo {
   @override
   Future<Either<Failure, List<LandmarkOnCatModel>>> fetchlandmarks({required String categoryId}) async {
     try {
-      var data = await apiService.get(endpoint: 'categories/$categoryId/landmarks');
+      var data = await apiService.get(endpoint: 'categories/$categoryId/landmarks?sort=rating');
            print(data['data']['landmarks']);
 
       List<LandmarkOnCatModel> landmarkdata = [];

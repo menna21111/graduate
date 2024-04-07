@@ -17,21 +17,13 @@ class Sawah extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              CategoriesCubitCubit(CategoriesRepoImpl(ApiService(Dio())))
-                ..fetchCategories(),
-        )
-      ],
-      child: MaterialApp.router(
+    return 
+       MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
             scaffoldBackgroundColor: kbackgroundcolor,
             textTheme: GoogleFonts.interTextTheme()),
-      ),
-    );
+      );
   }
 }
