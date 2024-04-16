@@ -6,10 +6,8 @@ import 'package:graduation/features/categories/presentation/manger/categories_cu
 import 'package:graduation/features/categories/presentation/views/widgets/customcard.dart';
 
 class CategoriesGrid extends StatelessWidget {
-  CategoriesGrid({Key? key})
-      : super(key: key);
+  CategoriesGrid({Key? key}) : super(key: key);
 
-  
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesCubitCubit, CategoriesCubitState>(
@@ -31,11 +29,10 @@ class CategoriesGrid extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return CustomCard(
-                    imglink:// 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/1024px-Kheops-Pyramid.jpg',
-                     'assets/img/categories/${state.categorieslist[index].imageCover!}',
-                   //state.categorieslist[index].imageCover!,
+                     imglink: 'assets/img/categories/${state.categorieslist[index].imageCover!}',
                     text: state.categorieslist[index].name!,
-                    onTap: () => GoRouter.of(context).push('/LandmarksBody',extra:state.categorieslist[index]),
+                    onTap: () => GoRouter.of(context).push('/LandmarksBody',
+                        extra: state.categorieslist[index]),
                   );
                 },
               ),

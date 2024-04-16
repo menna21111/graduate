@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation/core/widgets/appbar.dart';
+import 'package:graduation/core/widgets/navigationpar.dart';
 import 'package:graduation/features/categories/data/model/landmark_on_cat_model/landmark_on_cat_model.dart';
-import 'package:graduation/features/categories/presentation/views/widgets/appbar.dart';
 import 'package:graduation/features/categories/presentation/views/widgets/arrow.dart';
 import 'package:graduation/features/categories/presentation/views/widgets/infoimg.dart';
 import 'package:graduation/features/categories/presentation/views/widgets/information.dart';
 import 'package:graduation/features/categories/presentation/views/widgets/name_location.dart';
-import 'package:graduation/features/categories/presentation/views/widgets/navigationpar.dart';
+import 'package:graduation/features/home/data/models/most_visited_model/most_visited_model.dart';
 
 class InfViewBody extends StatelessWidget {
-
-  const InfViewBody({super.key, required this.landmarkoncatModel});
-      final LandmarkOnCatModel landmarkoncatModel;
-
+  const InfViewBody(
+      {super.key, this.landmarkoncatModel, this.mostVisitedModel});
+  final LandmarkOnCatModel? landmarkoncatModel;
+  final MostVisitedModel? mostVisitedModel;
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +24,20 @@ class InfViewBody extends StatelessWidget {
         child: Column(
           children: [
             arrow(
-              onTap: () => GoRouter.of(context).pop('/LandmarksBody'),
+              onTap: () => GoRouter.of(context).pop(),
             ),
             infoimg(
-                imagelink:
-                    'assets/img/landmarks/${landmarkoncatModel.imageCover!}',
-                   // landmarkoncatModel.imageCover!
-                    ),
-                    
-             locationtionwidget(landmarkoncatModel: landmarkoncatModel,),
-            Information(landmarkoncatModel: landmarkoncatModel),
+              imagelink:
+                  'assets/img/landmarks/${(landmarkoncatModel?.imageCover ?? mostVisitedModel?.imageCover)!}',
+            ),
+            locationtionwidget(
+             name: (landmarkoncatModel?.name ?? mostVisitedModel?.name)!,
+              location:(landmarkoncatModel?.location?.governorate ??
+                  mostVisitedModel?.location?.governorate)!,
+            ),
+            Information(
+                text: (landmarkoncatModel?.description ??
+                    mostVisitedModel?.description)!),
           ],
         ),
       ),

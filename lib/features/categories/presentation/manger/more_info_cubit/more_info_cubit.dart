@@ -7,20 +7,15 @@ class MoreInfoCubit extends Cubit<MoreInfoState> {
   MoreInfoCubit() : super(MoreInfoInitial());
   String? Text;
   bool? showView_more_Details;
-  Future<void> viewmore({required text,required bool showmore}) async {
-    if( text!=null&&text.length>580 && !showmore){
+  Future<void> viewmore({required text, required bool showmore}) async {
+    if (text != null && text.length > 580 && !showmore) {
       Text = text.substring(0, 580);
-     showView_more_Details= true;
-    emit(showFullTextstate());}else{
+      showView_more_Details = true;
+      emit(showFullTextstate());
+    } else {
       Text = text;
-           showView_more_Details= false;
-}
-      emit(showbriefstate());
+      showView_more_Details = false;
     }
-      
-      
-   
-      
-    
+    emit(showbriefstate());
   }
-
+}

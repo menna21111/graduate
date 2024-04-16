@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation/core/utils/style.dart';
-import 'package:graduation/features/categories/data/model/landmark_on_cat_model/landmark_on_cat_model.dart';
 import 'package:graduation/features/categories/presentation/manger/more_info_cubit/more_info_cubit.dart';
 
 // ignore: must_be_immutable
 class Information extends StatelessWidget {
-  Information({Key? key, required this.landmarkoncatModel}) : super(key: key);
-  final LandmarkOnCatModel landmarkoncatModel;
+  Information({Key? key, required this.text}) : super(key: key);
+  final String text;
 
   bool showFullText = false;
 
@@ -18,8 +17,8 @@ class Information extends StatelessWidget {
       builder: (context, state) {
         if (state is MoreInfoInitial) {
           BlocProvider.of<MoreInfoCubit>(context).viewmore(
-            text:landmarkoncatModel.description !,
-            showmore: showFullText,  
+            text: text,
+            showmore: showFullText,
           );
         }
         return Padding(
@@ -31,8 +30,8 @@ class Information extends StatelessWidget {
                 onTap: () {
                   showFullText = false;
                   BlocProvider.of<MoreInfoCubit>(context).viewmore(
-                    text: landmarkoncatModel.description!, 
-                                  showmore: showFullText,
+                    text: text,
+                    showmore: showFullText,
                   );
                 },
                 child: Text(
@@ -41,14 +40,17 @@ class Information extends StatelessWidget {
                       .copyWith(fontWeight: FontWeight.w400, height: 1.5),
                 ),
               ),
-              if (BlocProvider.of<MoreInfoCubit>(context).showView_more_Details==true && showFullText==false)
+              if (BlocProvider.of<MoreInfoCubit>(context)
+                          .showView_more_Details ==
+                      true &&
+                  showFullText == false)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextButton(
                     onPressed: () {
                       showFullText = true;
                       BlocProvider.of<MoreInfoCubit>(context).viewmore(
-                        text: landmarkoncatModel.description!,
+                        text: text,
                         showmore: showFullText,
                       );
                     },

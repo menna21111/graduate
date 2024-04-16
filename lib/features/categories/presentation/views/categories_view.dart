@@ -8,19 +8,16 @@ import 'package:graduation/features/categories/presentation/views/widgets/catego
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-    return 
-     Scaffold(body:
-       MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              CategoriesCubitCubit(CategoriesRepoImpl(ApiService(Dio())))
-                ..fetchCategories(),
-        )
-      ],
-      child:CategoriesViewBody()));
+    return Scaffold(
+        body: MultiBlocProvider(providers: [
+      BlocProvider(
+        create: (context) =>
+            CategoriesCubitCubit(CategoriesRepoImpl(ApiService(Dio())))
+              ..fetchCategories(),
+      )
+    ], child: CategoriesViewBody()));
   }
 }
